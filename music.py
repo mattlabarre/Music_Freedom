@@ -13,8 +13,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver import ActionChains
 import getpass
 
-#Creates a dataframe of the playlist file with all the song titles and artists in it
-df = pd.read_excel('/Users/'+Name+'/Documents/Python/Python_Files/playlist.xlsx',encoding = "ISO-8859-1")
+#Creates a dataframe of the playlist file with all the song titles and artists in it. It will attempt to read a csv file that could have been created with the topCharts spider, but if it does not exitst, it will read the default excel file
+try:
+    df = pd.read_csv('/Users/'+Name+'/Documents/Python/Python_Files/playlist.csv',encoding = "ISO-8859-1")
+except:
+    df = pd.read_excel('/Users/'+Name+'/Documents/Python/Python_Files/playlist.xlsx',encoding = "ISO-8859-1")
 
 #Navigates to the youtube homepage
 driver.get('https://www.youtube.com/')
